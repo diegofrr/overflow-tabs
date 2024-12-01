@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import {
   OverflowTabs,
   OverflowTabsContent,
@@ -11,18 +12,23 @@ import {
   DollarSignIcon,
   HomeIcon,
   InfoIcon,
+  MoonIcon,
   RssIcon,
   ScrollTextIcon,
   SparklesIcon,
+  SunIcon,
   UsersIcon,
 } from "lucide-react";
+import { useTheme } from "next-themes";
 import Link from "next/link";
 
 export default function Page() {
+  const { theme, setTheme } = useTheme();
+
   return (
     <div className="px-8 pt-24">
       <div className="max-w-4xl flex items-center flex-col space-y-16 mx-auto">
-        <div className="space-y-2 w-full">
+        <div className="space-y-2 w-full relative">
           <h1 className="text-2xl font-bold">Shadcn/UI Overflow Tabs</h1>
           <Link
             target="_blank"
@@ -31,6 +37,15 @@ export default function Page() {
           >
             diegofrr/overflow-tabs
           </Link>
+
+          <Button
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="absolute right-0 top-0 !m-0"
+            variant="ghost"
+            size="icon"
+          >
+            {theme === "light" ? <SunIcon size={16} /> : <MoonIcon size={16} />}
+          </Button>
         </div>
 
         <OverflowTabs defaultValue="home" className="w-full">
