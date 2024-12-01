@@ -45,4 +45,4 @@ Lucide Icons
 pnpm add lucide-react
 ```
 
-Copy [overflow-tabs.tsx](https://github.com/diegofrr/overflow-tabs/blob/main/components/ui/overflow-tabs.tsx) to your project
+Copy [overflow-tabs.tsx](https://github.com/diegofrr/overflow-tabs/blob/main/components/ui/overflow-tabs.tsx) component to your project
