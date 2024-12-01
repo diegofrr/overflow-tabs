@@ -6,7 +6,6 @@ import {
   OverflowTabsList,
   OverflowTabsTrigger,
 } from "@/components/ui/overflow-tabs";
-import { Separator } from "@/components/ui/separator";
 import {
   ContactIcon,
   DollarSignIcon,
