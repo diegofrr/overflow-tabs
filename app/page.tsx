@@ -26,7 +26,7 @@ export default function Page() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <div className="px-8 pt-24">
+    <div className="px-8 pt-24 h-dvh">
       <div className="max-w-4xl flex items-center flex-col space-y-16 mx-auto">
         <div className="space-y-2 w-full relative">
           <h1 className="text-2xl font-bold">Shadcn/UI Overflow Tabs</h1>
