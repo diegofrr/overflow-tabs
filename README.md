@@ -3,10 +3,10 @@ A responsive Shadcn/UI tab component
 
 
 ### Demo
+https://overflow-tabs.vercel.app/
 
 https://github.com/user-attachments/assets/4dc069dc-71e1-4b15-950e-d9d8b2e25fb1
 
-Real demo: https://overflow-tabs.vercel.app/
 
 ### Usage
 
