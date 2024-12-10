@@ -105,21 +105,20 @@ const OverflowTabsList = React.forwardRef<
               return (
                 <DropdownMenuItem
                   key={index}
-                  className="p-0"
+                  asChild={tab.props.asChild}
+                  className={cn("m-0 p-0")}
                   onSelect={(e) => e.preventDefault()}
                 >
                   {React.cloneElement(tab, {
                     className: cn(
-                      tab.props.className,
-                      "w-full m-0 px-2 hover:bg-muted justify-start py-1.5 my-0 !h-auto"
+                      "w-full min-h-8 m-0 px-2 hover:bg-accent justify-start py-1 my-0 !h-auto",
+                      "after:absolute after:invisible data-[state=active]:after:visible",
+                      "after:-left-2.5 after:h-[calc(100%-8px)] after:w-full after:w-2",
+                      "after:rounded-full after:bg-primary",
+                      tab.props.className
                     ),
                     showBorder: false,
-                    children: (
-                      <>
-                        {tab.props.children}
-                        <span className="absolute -left-2.5 top-1 h-[calc(100%-8px)] w-2 rounded-full bg-primary opacity-0 transition-opacity duration-200 group-data-[state=active]:opacity-100" />
-                      </>
-                    ),
+                    children: tab.props.children,
                   })}
                 </DropdownMenuItem>
               );
@@ -132,6 +131,14 @@ const OverflowTabsList = React.forwardRef<
 });
 OverflowTabsList.displayName = TabsPrimitive.List.displayName;
 
+export const overflowTabsTriggerClx = cn(
+  "group relative inline-flex h-7 items-center gap-2 whitespace-nowrap px-3",
+  "text-sm font-normal ring-offset-background focus-visible:outline-none",
+  "rounded-md hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring",
+  "disabled:pointer-events-none disabled:opacity-50",
+  "data-[state=active]:text-foreground"
+);
+
 const OverflowTabsTrigger = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger> & {
@@ -139,21 +146,18 @@ const OverflowTabsTrigger = React.forwardRef<
   }
 >(({ className, showBorder = true, ...props }, ref) => (
   <TabsPrimitive.Trigger
-    onFocus={(e) => e.preventDefault()}
-    ref={ref}
-    tabIndex={1}
     className={cn(
-      "group relative inline-flex h-7 items-center justify-center gap-2 whitespace-nowrap px-3 text-sm font-normal ring-offset-background focus-visible:outline-none",
-      "rounded-md hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
-      "data-[state=active]:text-foreground",
+      overflowTabsTriggerClx,
+      "before:invisible before:absolute before:-bottom-1.5 before:left-0 before:h-1 before:w-full before:rounded-full before:bg-primary data-[state=active]:before:visible",
+      !showBorder && "before:!invisible",
       className
     )}
+    ref={ref}
+    tabIndex={1}
+    onFocus={(e) => e.preventDefault()}
     {...props}
   >
     {props.children}
-    {showBorder && (
-      <span className="invisible absolute -bottom-1.5 left-0 h-1 w-full rounded-full bg-primary transition-opacity duration-200 group-data-[state=active]:visible" />
-    )}
   </TabsPrimitive.Trigger>
 ));
 OverflowTabsTrigger.displayName = TabsPrimitive.Trigger.displayName;
