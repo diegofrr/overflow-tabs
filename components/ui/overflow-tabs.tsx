@@ -131,14 +131,6 @@ const OverflowTabsList = React.forwardRef<
 });
 OverflowTabsList.displayName = TabsPrimitive.List.displayName;
 
-export const overflowTabsTriggerClx = cn(
-  "group relative inline-flex h-7 items-center gap-2 whitespace-nowrap px-3",
-  "text-sm font-normal ring-offset-background focus-visible:outline-none",
-  "rounded-md hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring",
-  "disabled:pointer-events-none disabled:opacity-50",
-  "data-[state=active]:text-foreground"
-);
-
 const OverflowTabsTrigger = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger> & {
@@ -147,7 +139,10 @@ const OverflowTabsTrigger = React.forwardRef<
 >(({ className, showBorder = true, ...props }, ref) => (
   <TabsPrimitive.Trigger
     className={cn(
-      overflowTabsTriggerClx,
+      "group relative inline-flex h-7 items-center gap-2 whitespace-nowrap px-3",
+      "text-sm font-normal ring-offset-background focus-visible:outline-none",
+      "rounded-md hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring",
+      "disabled:pointer-events-none disabled:opacity-50 data-[state=active]:text-foreground",
       "before:invisible before:absolute before:-bottom-1.5 before:left-0 before:h-1 before:w-full before:rounded-full before:bg-primary data-[state=active]:before:visible",
       !showBorder && "before:!invisible",
       className
